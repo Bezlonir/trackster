@@ -1,0 +1,93 @@
+/*
+  Custom styles for Trackster App
+*/
+
+/*header styling*/
+header .container-fluid {
+  padding-left:0;
+  padding-right:0;
+}
+
+
+.trackster-theme {
+  background-color:rgb(35, 2, 63);
+  color:rgb(255,0,171);
+
+}
+
+header h1 {
+  font-family: 'Righteous', cursive;
+  font-size:2.5rem;
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+.menu-colors {
+  background-color:rgb(104,0,255);
+  color:rgb(255,255,255);
+  padding: 4px 0;
+  font-size:12px;
+}
+
+.info-row {
+  position:relative;
+  top:-1px;
+}
+
+
+header .row {
+  margin-right:0;
+  margin-left:0;
+}
+
+header .header {
+  align-items:center;
+}
+
+header input {
+  border-radius:9px;
+  margin-top:1.5rem;
+  margin-right:6px;
+}
+
+header i {
+  margin-top:1.5rem;
+}
+
+#search-button {
+  color:rgb(35, 2, 63);
+  background-color:rgb(255,0,171);
+  border-radius:19px;
+  text-align:center;
+}
+
+/*search results styling*/
+#search-results {
+  color:rgb(204,204,204);
+  font-size:12px;
+  padding-top:4px;
+  padding-bottom:4px;
+  border-bottom:1px solid rgb(204,204,204);
+}
+
+.fa-play-circle-o {
+  color:rgb(255,0,171);
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+.artwork {
+  height:2rem;
+  width:auto;
+}
+
+.artwork img {
+  height:inherit;
+  width:inherit;
+}
+
+.popularity-head, .length-head, .popularity,
+.length {
+  text-align:right;
+  
+}

@@ -1,0 +1,73 @@
+<!-- trackster app is a music finding
+app based on a schematic provided
+by codecademy. -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>trackster</title>
+  <link rel="icon" href="favicon.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./resources/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./resources/js/trackster.js"></script>
+  <script type="text/javascript" src="./resources/js/tests.js"></script>
+</head>
+<body>
+  <!-- header section -->
+  <header>
+
+    <div class="container-fluid">
+      <div class="row header trackster-theme">
+        <h1 class="col-xs-7 col-xs-offset-1">trackster</h1>
+        <input id="search-input" class="col-xs-2" placeholder="soich"></>
+        <i id="search-button" class = "fa fa-search fa-2x col-xs-1"></i>
+      </div>
+      <div class="row info-row menu-colors">
+
+        <span class="col-xs-4 col-xs-offset-2">Song</span>
+        <span class="col-xs-2">Artist</span>
+        <span class="col-xs-2">Album</span>
+        <span class="col-xs-1 popularity-head">Popularity</span>
+        <span class="col-xs-1 length-head">Length</span>
+      </div>
+      <div class="row">
+        <div id="search-results" class="container-fluid">
+          <div class="col-xs-1 col-xs-offset-1">
+            <i class="fa fa-play-circle-o"></i>
+          </div>
+          <div class="song-title col-xs-4">
+            <span>Fairytale in the Supermarket</span>
+          </div>
+          <div class="artist col-xs-2">
+            <span>The raincoats</span>
+          </div>
+          <div class="album col-xs-2">
+            <span>The raincoats</span>
+          </div>
+          <div class="popularity col-xs-1">
+            <span>101,839</span>
+          </div>
+          <div class="length col-xs-1">
+            <span>301</span>
+          </div>
+          <!-- <div class="artwork col-xs-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/07._Camel_Profile%2C_near_Silverton%2C_NSW%2C_07.07.2007.jpg"/>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container-fluid">
+
+    </div>
+  </header>
+
+</body>
+</html>
