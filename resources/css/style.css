@@ -77,12 +77,13 @@ header i {
 }
 
 .artwork {
-  height:2rem;
+  height:auto;
   /*width:auto;*/
 }
 
 .artwork img {
   height:inherit;
+  padding:0;
   /*width:inherit;*/
 }
 
