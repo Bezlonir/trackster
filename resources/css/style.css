@@ -65,8 +65,8 @@ header i {
 #search-results {
   color:rgb(204,204,204);
   font-size:12px;
-  padding-top:4px;
-  padding-bottom:4px;
+  padding-top:5px;
+  padding-bottom:3px;
   border-bottom:1px solid rgb(204,204,204);
 }
 
@@ -78,16 +78,16 @@ header i {
 
 .artwork {
   height:2rem;
-  width:auto;
+  /*width:auto;*/
 }
 
 .artwork img {
   height:inherit;
-  width:inherit;
+  /*width:inherit;*/
 }
 
 .popularity-head, .length-head, .popularity,
 .length {
-  text-align:right;
-  
+  /*text-align:right;*/
+
 }
