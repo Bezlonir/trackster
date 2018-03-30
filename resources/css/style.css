@@ -59,6 +59,18 @@ header i {
   background-color:rgb(255,0,171);
   border-radius:19px;
   text-align:center;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+/*mobile styling for header*/
+@media only screen and (max-width:510px) {
+  #search-button {
+    border-radius:9px;
+    text-align:left;
+    display:flex;
+    justify-content:space-around;
+  }
 }
 
 /*search results styling*/
@@ -90,5 +102,14 @@ header i {
 #listeners-head, .listeners,
 .length {
   /*text-align:right;*/
+}
+
+
+/*mobile styling for search results*/
+@media only screen and (max-width:510px) {
+  .song-title {
+    width: 28.3%;
+  }
+
 
 }
