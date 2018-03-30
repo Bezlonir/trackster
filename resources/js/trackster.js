@@ -28,6 +28,8 @@ formatNum = function(num){
 */
 Trackster.renderTracks = function(tracks) {
   $("#search-container").empty();
+  $("#site-logo").fadeTo(200,1);
+  $("#search-input").val('');
   for (i = 0; i < tracks.results.trackmatches.track.length; i++) {
     var thisTitle = tracks.results.trackmatches.track[i].name;
     var thisArtist = tracks.results.trackmatches.track[i].artist;
@@ -73,6 +75,7 @@ Trackster.renderTracks = function(tracks) {
     datatype:'jsonp',
     success: function(track_data) {
       console.log(track_data);
+      $("#site-logo").fadeTo(200,0.6);
       Trackster.renderTracks(track_data);
 
     }
