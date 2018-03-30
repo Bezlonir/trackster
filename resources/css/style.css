@@ -87,7 +87,7 @@ header i {
   /*width:inherit;*/
 }
 
-.popularity-head, .length-head, .popularity,
+#listeners-head, .listeners,
 .length {
   /*text-align:right;*/
 

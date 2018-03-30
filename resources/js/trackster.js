@@ -3,15 +3,39 @@ var API_KEY = "e943d1e8913e758cf4a60b7239f1731d";
 
 //runtime
 $(document).ready(function() {
+  //Event handler for click on search button.
+  //Calls a search by song title.
   $("#search-button").click(function(){
     var searchText = $("#search-input").val();
     Trackster.searchTracksByTitle(searchText);
   });     //<----#search-button
+
+  $("#search-button").on("vclick", function(){
+      $('#search-button').click();//Trigger search button click event
+  });     //<----#search-button
+
+  //Event handler for the enter key on the
+  //input box. Simulates a click.
   $("#search-input").keypress(function(e){
     if(e.which == 13){//Enter key pressed
         $('#search-button').click();//Trigger search button click event
       };
     });   //<----#search-input
+
+  //Sort table by song if song header is
+  //clicked.
+  $("#song-head").click(function() {
+    sortTable("song");
+  });
+
+  $("#artist-head").click(function() {
+    sortTable("artist");
+  });
+
+  $("#listeners-head").click(function() {
+    sortTable("listeners");
+  });
+
 });
 
 // convert a number to a string with commas
@@ -39,7 +63,7 @@ Trackster.renderTracks = function(tracks) {
     var thisURL = tracks.results.trackmatches.track[i].url;
     // contain html for a track listing
     var searchResult =
-      '<div id="search-results" class="row">' +
+      '<div id="search-results" class="row search-results">' +
         '<div class="col-xs-1 col-xs-offset-1">' +
           '<i class="fa fa-play-circle-o"></i>' +
         '</div>' +
@@ -55,7 +79,7 @@ Trackster.renderTracks = function(tracks) {
           '<a href="' + thisURL +
           '"><img src="' + thisPic + '"/></a>' +
         '</div>' +
-        '<div class="popularity col-xs-2">' +
+        '<div class="listeners col-xs-2">' +
           '<span>' + listenerString
           + '</span>' +
         '</div>' +
@@ -81,3 +105,50 @@ Trackster.renderTracks = function(tracks) {
     }
 });
 };
+
+function sortTable(sortOperator) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = $("#search-container");
+  console.log(table);
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByClassName(".search-results")[0];
+    console.log(rows);
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 0; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      switch (sortOperator) {
+        case "song":
+          x = rows[i].getElementsByClassName(".song-title")[0];
+          y = rows[i + 1].getElementsByClassName(".song-title")[0];
+        case "artist":
+          x = rows[i].getElementsByClassName(".artist")[0];
+          y = rows[i + 1].getElementsByClassName(".artist")[0];
+        case "listeners":
+          x = rows[i].getElementsByClassName(".listeners")[0];
+          y = rows[i + 1].getElementsByClassName(".listeners")[0];
+      };
+
+      // Check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        // I so, mark as a switch and break the loop:
+        shouldSwitch= true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
