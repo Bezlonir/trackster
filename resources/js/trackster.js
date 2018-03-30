@@ -1,13 +1,31 @@
 var Trackster = {};
 var API_KEY = "e943d1e8913e758cf4a60b7239f1731d";
 
+$(document).on('touchstart', function() {
+    detectTap = true; //detects all touch events
+});
+$(document).on('touchmove', function() {
+    detectTap = false; //Excludes the scroll events from touch events
+});
+$(document).on('click touchend', function(event) {
+    if (event.type == "click") detectTap = true; //detects click events
+       if (detectTap){
+          //here you can write the function or codes you wanna execute on tap
+
+       }
+ });
+
+
 //runtime
 $(document).ready(function() {
   //Event handler for click on search button.
   //Calls a search by song title.
   $("#search-button").click(function(){
     var searchText = $("#search-input").val();
-    Trackster.searchTracksByTitle(searchText);
+    if (searchText) {
+        Trackster.searchTracksByTitle(searchText);
+    };
+
   });     //<----#search-button
 
   $("#search-button").on("vclick", function(){
@@ -108,7 +126,7 @@ Trackster.renderTracks = function(tracks) {
 
 function sortTable(sortOperator) {
   var table, rows, switching, i, x, y, shouldSwitch;
-  table = $("#search-container");
+  table = document.getElementById('search-container');
   console.log(table);
   switching = true;
   /* Make a loop that will continue until
@@ -116,7 +134,7 @@ function sortTable(sortOperator) {
   while (switching) {
     // Start by saying: no switching is done:
     switching = false;
-    rows = table.getElementsByClassName(".search-results")[0];
+    rows = table.getElementsByClassName("search-results");
     console.log(rows);
     /* Loop through all table rows (except the
     first, which contains table headers): */
@@ -125,18 +143,18 @@ function sortTable(sortOperator) {
       shouldSwitch = false;
       /* Get the two elements you want to compare,
       one from current row and one from the next: */
-      switch (sortOperator) {
-        case "song":
-          x = rows[i].getElementsByClassName(".song-title")[0];
-          y = rows[i + 1].getElementsByClassName(".song-title")[0];
-        case "artist":
-          x = rows[i].getElementsByClassName(".artist")[0];
-          y = rows[i + 1].getElementsByClassName(".artist")[0];
-        case "listeners":
-          x = rows[i].getElementsByClassName(".listeners")[0];
-          y = rows[i + 1].getElementsByClassName(".listeners")[0];
-      };
+      if (sortOperator === "song") {
+          x = rows[i].getElementsByClassName("song-title")[0];
+          y = rows[i + 1].getElementsByClassName("song-title")[0];
+        } else if (sortOperator === "artist") {
+          x = rows[i].getElementsByClassName("artist")[0];
+          y = rows[i + 1].getElementsByClassName("artist")[0];
+        } else if ( sortOperator == "listeners") {
+          x = rows[i].getElementsByClassName("listeners")[0];
+          y = rows[i + 1].getElementsByClassName("listeners")[0];
 
+      };
+      console.log(x);
       // Check if the two rows should switch place:
       if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
         // I so, mark as a switch and break the loop:
