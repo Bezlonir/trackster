@@ -63,13 +63,27 @@ header i {
   margin-left:auto;
 }
 
+@media only screen and (max-width:780px) {
+  #search-button {
+    display:flex;
+    justify-content:space-around;
+  }
+}
+
 /*mobile styling for header*/
 @media only screen and (max-width:510px) {
   #search-button {
     border-radius:9px;
     text-align:left;
-    display:flex;
-    justify-content:space-around;
+  }
+
+  #song-head {
+    width: 24.3%;
+  }
+
+  #listeners-head {
+    position:relative;
+    left:8px;
   }
 }
 
@@ -108,8 +122,15 @@ header i {
 /*mobile styling for search results*/
 @media only screen and (max-width:510px) {
   .song-title {
-    width: 28.3%;
+    width: 24.3%;
   }
+
+  .listeners {
+    text-align:right;
+    position:relative;
+    left:8px;
+  }
+
 
 
 }
