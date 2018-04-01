@@ -63,6 +63,18 @@ header i {
   margin-left:auto;
 }
 
+#song-head {
+  cursor:pointer;
+}
+
+#artist-head {
+  cursor:pointer;
+}
+
+#listeners-head {
+  cursor:pointer;
+}
+
 @media only screen and (max-width:780px) {
   #search-button {
     display:flex;
