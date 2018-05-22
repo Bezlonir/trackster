@@ -106,7 +106,9 @@ header i {
   padding-top:5px;
   padding-bottom:3px;
   border-bottom:1px solid rgb(204,204,204);
+  background: linear-gradient(#ffffff, #fffff1);
 }
+
 
 .fa-play-circle-o {
   color:rgb(255,0,171);
