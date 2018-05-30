@@ -175,9 +175,9 @@ function sortTable(sortOperator) {
         firstChild.textContent.replace(/,/g, ''));
 
         if (currentSort === "listeners") {
-          return x > y ? 1 : -1;
-        } else {
           return x > y ? -1 : 1;
+        } else {
+          return x > y ? 1 : -1;
         }
       };
     });
