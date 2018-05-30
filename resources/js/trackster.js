@@ -1,5 +1,6 @@
 var Trackster = {};
 var API_KEY = "e943d1e8913e758cf4a60b7239f1731d";
+var currentSort = '';
 
 $(document).on('touchstart', function() {
     detectTap = true; //detects all touch events
@@ -116,7 +117,6 @@ Trackster.renderTracks = function(tracks) {
     url: "https://ws.audioscrobbler.com/2.0/?method=track.search&track="+title+"&api_key="+API_KEY+"&format=json",
     datatype:'jsonp',
     success: function(track_data) {
-      console.log(track_data);
       $("#site-logo").fadeTo(200,0.6);
       Trackster.renderTracks(track_data);
 
@@ -124,49 +124,70 @@ Trackster.renderTracks = function(tracks) {
 });
 };
 
-function sortTable(sortOperator) {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById('search-container');
-  console.log(table);
-  switching = true;
-  /* Make a loop that will continue until
-  no switching has been done: */
-  while (switching) {
-    // Start by saying: no switching is done:
-    switching = false;
-    rows = table.getElementsByClassName("search-results");
-    console.log(rows);
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
-    for (i = 0; i < (rows.length - 1); i++) {
-      // Start by saying there should be no switching:
-      shouldSwitch = false;
-      /* Get the two elements you want to compare,
-      one from current row and one from the next: */
-      if (sortOperator === "song") {
-          x = rows[i].getElementsByClassName("song-title")[0];
-          y = rows[i + 1].getElementsByClassName("song-title")[0];
-        } else if (sortOperator === "artist") {
-          x = rows[i].getElementsByClassName("artist")[0];
-          y = rows[i + 1].getElementsByClassName("artist")[0];
-        } else if ( sortOperator == "listeners") {
-          x = rows[i].getElementsByClassName("listeners")[0];
-          y = rows[i + 1].getElementsByClassName("listeners")[0];
 
-      };
-      console.log(x);
-      // Check if the two rows should switch place:
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        // I so, mark as a switch and break the loop:
-        shouldSwitch= true;
-        break;
-      }
-    }
-    if (shouldSwitch) {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
+// Sort the table of songs by song title, artist, or listeners, per the sortOperator.
+function sortTable(sortOperator) {
+  // return a nodeList containing each HTML row representing individually a search result
+  var rows = document.getElementById('search-container').childNodes;
+
+  // convert nodeList to an array so array methods can be called on it
+  var rowsArray = Array.from(rows);
+
+  //set the currentSort variable to check if a reverse sort is needed in the case that the table has been sorted by current method already
+  if (sortOperator === currentSort) {
+    currentSort = sortOperator + 'Rev';
+  } else {
+    currentSort = sortOperator;
   }
+
+  // sort the array of song results and assign them to the sortedRows array of HTMLElements
+  var sortedRows = rowsArray.sort(function(first, second){
+    //sort by song title
+    if (sortOperator === "song") {
+        x = first.childNodes[1].
+        firstChild.textContent.toLowerCase();
+        y = second.childNodes[1].
+        firstChild.textContent.toLowerCase();
+        if (currentSort === "song") {
+          return x > y ? 1 : -1;
+        } else {
+          return x > y ? -1 : 1;
+        }
+
+      //sort by artist
+      } else if (sortOperator === "artist") {
+        x = first.childNodes[2].
+        firstChild.textContent.toLowerCase();
+        y = second.childNodes[2].
+        firstChild.textContent.toLowerCase();
+        if (currentSort === "artist") {
+          return x > y ? 1 : -1;
+        } else {
+          return x > y ? -1 : 1;
+        }
+
+      // sort by listeners
+      } else if ( sortOperator == "listeners") {
+        x = parseFloat(first.childNodes[4].
+        firstChild.textContent);
+        y = parseFloat(second.childNodes[4].
+        firstChild.textContent);
+        if (currentSort === "listeners") {
+          return x > y ? 1 : -1;
+        } else {
+          return x > y ? -1 : 1;
+        }
+      };
+    });
+
+
+    var newTable = document.
+    getElementById('search-container');
+    $("#search-container").empty();
+
+    sortedRows.forEach(function(row) {
+      newTable.append(row);
+    });
+
+
 }
