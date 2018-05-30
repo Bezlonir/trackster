@@ -169,9 +169,11 @@ function sortTable(sortOperator) {
       // sort by listeners
       } else if ( sortOperator == "listeners") {
         x = parseFloat(first.childNodes[4].
-        firstChild.textContent);
+        firstChild.textContent.replace(/,/g, ''));
+
         y = parseFloat(second.childNodes[4].
-        firstChild.textContent);
+        firstChild.textContent.replace(/,/g, ''));
+
         if (currentSort === "listeners") {
           return x > y ? 1 : -1;
         } else {
